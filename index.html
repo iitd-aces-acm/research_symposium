@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSE Research Symposium 2026 — IIT Delhi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --bg:         #F6F4EF;
+      --surface:    #FFFFFF;
+      --navy:       #1B3A6B;
+      --navy-light: #2a5298;
+      --red:        #B5281C;
+      --ink:        #1C1C1E;
+      --ink-2:      #3A3A3C;
+      --muted:      #6B6B70;
+      --border:     #D8D5CE;
+      --border-lt:  #EAE8E2;
+      --tag-ai:     #1B3A6B;
+      --tag-sys:    #6B3A1B;
+      --tag-theory: #1B5E3B;
+      --tag-hci:    #5C1B6B;
+      --serif:      'EB Garamond', Georgia, serif;
+      --sans:       'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; }
+    section { padding: 5rem 0; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-label {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 3rem;
+    }
+
+    .divider {
+      width: 3rem;
+      height: 3px;
+      background: var(--red);
+      margin: 1rem 0 2rem 0;
+    }
+
+    /* ─── NAVBAR ───────────────────────────────────────────────────── */
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(246, 244, 239, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+      transition: box-shadow 0.2s;
+    }
+
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .nav-logos {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-sep {
+      height: 28px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .nav-brand {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-2);
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-links a:hover { background: var(--border-lt); color: var(--navy); }
+
+    .nav-cta {
+      background: var(--navy) !important;
+      color: #fff !important;
+      padding: 0.4rem 1rem !important;
+      border-radius: 4px;
+    }
+    .nav-cta:hover { background: var(--navy-light) !important; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 22px; height: 2px;
+      background: var(--ink);
+      display: block;
+      border-radius: 2px;
+      transition: 0.2s;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────────────── */
+    #hero {
+      padding: 4.5rem 0 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: rgba(181,40,28,0.07);
+      border: 1px solid rgba(181,40,28,0.2);
+      padding: 0.3rem 0.8rem;
+      border-radius: 3px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-org {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--ink-2);
+    }
+
+    .hero-meta-item i {
+      width: 18px;
+      color: var(--navy);
+      font-size: 0.9rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--navy-light); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+    }
+    .btn-outline:hover { background: var(--navy); color: #fff; }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .hero-card-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: var(--border-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-card-img img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-card-body {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .hero-stat {
+      padding: 0.875rem;
+      text-align: center;
+      border-right: 1px solid var(--border-lt);
+    }
+    .hero-stat:last-child { border-right: none; }
+
+    .hero-stat-num {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ─── ABOUT ────────────────────────────────────────────────────── */
+    #about {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--ink-2);
+      line-height: 1.8;
+    }
+
+    .about-body p + p { margin-top: 1rem; }
+
+    .about-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-pill {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.1rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .info-pill-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+    }
+
+    .info-pill-text strong {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .info-pill-text span {
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    /* ─── DOMAINS ──────────────────────────────────────────────────── */
+    #domains { background: var(--bg); }
+
+    .domains-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .domain-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .domain-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+
+    .domain-day-badge {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      background: var(--border-lt);
+      color: var(--muted);
+    }
+
+    .domain-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1.25rem;
+      color: #fff;
+    }
+    .domain-card:nth-child(1) .domain-icon { background: var(--tag-ai); }
+    .domain-card:nth-child(2) .domain-icon { background: var(--tag-sys); }
+    .domain-card:nth-child(3) .domain-icon { background: var(--tag-theory); }
+    .domain-card:nth-child(4) .domain-icon { background: var(--tag-hci); }
+
+    .domain-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .domain-desc {
+      font-size: 0.92rem;
+      color: var(--ink-2);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .domain-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .topic-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--bg);
+    }
+
+    /* ─── SCHEDULE ─────────────────────────────────────────────────── */
+    #schedule {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .schedule-tabs {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      width: fit-content;
+      margin-bottom: 2.5rem;
+    }
+
+    .schedule-tab {
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.7rem 1.75rem;
+      border: none;
+      cursor: pointer;
+      background: var(--bg);
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s;
+      border-right: 1px solid var(--border);
+    }
+    .schedule-tab:last-child { border-right: none; }
+    .schedule-tab.active { background: var(--navy); color: #fff; }
+
+    .schedule-day { display: none; }
+    .schedule-day.active { display: block; }
+
+    .schedule-date-banner {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sched-date-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .sched-date-info strong {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .sched-date-info span {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .sched-track-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-left: auto;
+    }
+
+    .sched-legend-dot {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .sched-legend-dot::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .sched-legend-dot.ai::before { background: var(--tag-ai); }
+    .sched-legend-dot.sys::before { background: var(--tag-sys); }
+    .sched-legend-dot.theory::before { background: var(--tag-theory); }
+    .sched-legend-dot.hci::before { background: var(--tag-hci); }
+    .sched-legend-dot.general::before { background: var(--muted); }
+
+    .schedule-table { width: 100%; border-collapse: collapse; }
+
+    .schedule-table thead th {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .schedule-table tbody tr {
+      border-bottom: 1px solid var(--border-lt);
+      transition: background 0.1s;
+    }
+    .schedule-table tbody tr:hover { background: var(--bg); }
+
+    .schedule-table td {
+      padding: 0.9rem 0.75rem;
+      vertical-align: top;
+    }
+
+    .sched-time {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 130px;
+    }
+
+    .sched-event-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .sched-event-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .sched-speaker {
+      font-size: 0.82rem;
+      color: var(--navy);
+      margin-top: 0.25rem;
+    }
+
+    .sched-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.55rem;
+      border-radius: 3px;
+      color: #fff;
+      margin-top: 0.3rem;
+    }
+    .sched-tag.ai { background: var(--tag-ai); }
+    .sched-tag.sys { background: var(--tag-sys); }
+    .sched-tag.theory { background: var(--tag-theory); }
+    .sched-tag.hci { background: var(--tag-hci); }
+    .sched-tag.general { background: var(--muted); }
+    .sched-tag.break { background: var(--border); color: var(--ink-2); }
+
+    .sched-venue {
+      font-size: 0.78rem;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    /* ─── SCHEDULE DOCS DROPDOWN ───────────────────────────────────── */
+    .doc-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .doc-toggle-btn:hover { background: var(--border-lt); }
+
+    .docs-dropdown {
+      margin-top: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: #faf9f6;
+      border: 1px solid var(--border-lt);
+      border-left: 2px solid var(--navy);
+      border-radius: 4px;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .docs-dropdown.open { display: flex; }
+
+    .doc-link {
+      font-size: 0.82rem;
+      color: var(--navy);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .doc-link:hover { opacity: 0.7; }
+    .doc-link i { font-size: 0.9rem; color: var(--muted); }
+
+    /* ─── SPEAKERS ─────────────────────────────────────────────────── */
+    #speakers { background: var(--bg); }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .speaker-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .speaker-card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+
+    .speaker-img-wrap {
+      height: 180px;
+      background: var(--bg);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .speaker-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .speaker-track-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+    .speaker-track-bar.ai { background: var(--tag-ai); }
+    .speaker-track-bar.sys { background: var(--tag-sys); }
+    .speaker-track-bar.theory { background: var(--tag-theory); }
+    .speaker-track-bar.hci { background: var(--tag-hci); }
+
+    .speaker-body { padding: 1.25rem; }
+
+    .speaker-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.15rem;
+    }
+
+    .speaker-title {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .speaker-bio {
+      font-size: 0.85rem;
+      color: var(--ink-2);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .speaker-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .speaker-domain {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      color: #fff;
+    }
+    .speaker-domain.ai { background: var(--tag-ai); }
+    .speaker-domain.sys { background: var(--tag-sys); }
+    .speaker-domain.theory { background: var(--tag-theory); }
+    .speaker-domain.hci { background: var(--tag-hci); }
+
+    .speaker-link {
+      font-size: 0.78rem;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* ─── GALLERY ──────────────────────────────────────────────────── */
+    /* #gallery { background: var(--bg); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      background: var(--border-lt);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(27, 58, 107, 0);
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(27, 58, 107, 0.35); }
+
+    .gallery-overlay i {
+      color: #fff;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .gallery-item:hover .gallery-overlay i { opacity: 1; } */
+
+    /* ─── FORMS & CARDS ────────────────────────────────────────────── */
+    .form-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3rem 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    /* ─── REGISTRATION ─────────────────────────────────────────────── */
+    #registration {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .reg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .reg-info h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .reg-info p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── MERCH ────────────────────────────────────────────────────── */
+    #merch { background: var(--bg); }
+
+    /* ─── FEEDBACK ─────────────────────────────────────────────────── */
+    #feedback {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .feedback-left h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .feedback-left p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────────────── */
+    #footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.75);
+      padding: 3.5rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .footer-brand-name {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand-sub {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links { list-style: none; }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: #fff; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom span {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-social {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .footer-social:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .reg-grid,
+      .feedback-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .hero-visual { display: none; }
+      .domains-grid { grid-template-columns: 1fr; }
+      .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+      /* .gallery-grid { grid-template-columns: repeat(2, 1fr); } */
+      #merch > .container > div { grid-template-columns: 1fr !important; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem;
+        gap: 0.25rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .speakers-grid { grid-template-columns: 1fr; }
+      /* .gallery-grid { grid-template-columns: 1fr; } */
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ─── UTILITY ──────────────────────────────────────────────────── */
+    .text-center { text-align: center; }
+    .section-sub.center { margin-left: auto; margin-right: auto; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .full-width-btn { width: 100%; justify-content: center; }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logos">
+        <img src="cse-logo.jpg" alt="CSE IIT Delhi" class="nav-logo-img" />
+        <div class="nav-sep"></div>
+        <img src="aces.png" alt="ACES-ACM IIT Delhi" class="nav-logo-img" />
+        <div class="nav-sep" style="margin-left:0.5rem"></div>
+        <span class="nav-brand">Research Symposium '26</span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#domains">Tracks</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#speakers">Speakers</a></li>
+        <!-- <li><a href="#gallery">Gallery</a></li> -->
+        <li><a href="#merch">Perks</a></li>
+        <li><a href="#registration" class="nav-cta">Register</a></li>
+      </ul>
+
+      <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <i class="fa-solid fa-circle-dot"></i> Second Edition · 2026
+        </div>
+        <h1 class="hero-title">CSE Research<br>Symposium</h1>
+        <p class="hero-org">Department of Computer Science & Engineering, IIT Delhi<br>in association with ACES-ACM Student Chapter</p>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <i class="fa-regular fa-calendar"></i>
+            <span>April 4–5, 2026</span>
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-regular fa-clock"></i>
+            <span>9:00 AM – 6:00 PM (IST), both days</span>
+          </div>
+          <div class="hero-meta-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Lecture Hall Complex, IIT Delhi, Hauz Khas, New Delhi</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#registration" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Register Now</a>
+          <a href="#schedule" class="btn btn-outline"><i class="fa-regular fa-calendar-days"></i> View Schedule</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-img">
+            <img src="poster.png" alt="Symposium" />
+          </div>
+          <div class="hero-card-body">
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <div class="hero-stat-num">2</div>
+                <div class="hero-stat-label">Days</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">4</div>
+                <div class="hero-stat-label">Research Tracks</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-num">150+</div>
+                <div class="hero-stat-label">Attendees</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <p class="section-label">About the Event</p>
+        <h2 class="section-title">A Platform for Research, Ideas & Collaboration</h2>
+        <div class="divider"></div>
+        <div class="about-body">
+          <p>The CSE Research Symposium is a flagship academic event organised by the Department of Computer Science & Engineering at IIT Delhi, in collaboration with the ACES-ACM Student Chapter. It brings together faculty, graduate researchers, undergraduate students, and industry practitioners under one roof to celebrate and advance cutting-edge computer science research.</p>
+          <p>Over two days, the symposium features keynote talks, faculty research presentations, graduate student talks, and poster sessions spanning four core research domains: Artificial Intelligence & Machine Learning, Systems & Security, Theory & Algorithms, and Human-Computer Interaction.</p>
+          <p>The event aims to bridge the gap between academic research and real-world application, providing a forum for cross-disciplinary dialogue, mentoring, and collaboration and inspiring the next generation of researchers at IIT Delhi.</p>
+        </div>
+      </div>
+
+      <div class="about-sidebar">
+        <div class="info-pill">
+          <div class="info-pill-icon"><i class="fa-solid fa-building-columns"></i></div>
+          <div class="info-pill-text">
+            <strong>Organised by</strong>
+            <span>Dept. of CSE, IIT Delhi &amp; ACES-ACM Student Chapter</span>
+          </div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="info-pill-text">
+            <strong>Who it is for</strong>
+            <span>Students (B.Tech, M.Tech, PhD) &amp; Faculty at IIT Delhi</span>
+          </div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+          <div class="info-pill-text">
+            <strong>Format</strong>
+            <span>Talks · Poster Sessions · Panel Discussions · Networking</span>
+          </div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-icon"><i class="fa-solid fa-award"></i></div>
+          <div class="info-pill-text">
+            <strong>Awards &amp; Merch</strong>
+            <span>Exciting research awards and merchandise to grab</span>
+          </div>
+        </div>
+        <div class="info-pill">
+          <div class="info-pill-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <div class="info-pill-text">
+            <strong>Contact</strong>
+            <span>iitdelhiacesacm@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="domains">
+  <div class="container">
+    <p class="section-label">Research Tracks</p>
+    <h2 class="section-title">Four Core Domains</h2>
+    <div class="divider"></div>
+    <p class="section-sub">The symposium is structured around four research tracks, split across two days each covering a vibrant area of computer science.</p>
+
+    <div class="domains-grid">
+      <div class="domain-card">
+        <span class="domain-day-badge">Day 1 — April 4</span>
+        <div class="domain-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3 class="domain-title">Artificial Intelligence &amp; Machine Learning</h3>
+        <p class="domain-desc">Covering foundation models, deep learning, reinforcement learning, NLP, computer vision, and the fundamental theory of learning algorithms. Research that shapes how machines perceive, reason, and act.</p>
+        <div class="domain-topics">
+          <span class="topic-tag">Large Language Models</span>
+          <span class="topic-tag">Computer Vision</span>
+          <span class="topic-tag">Reinforcement Learning</span>
+          <span class="topic-tag">AI Safety</span>
+          <span class="topic-tag">NLP</span>
+          <span class="topic-tag">Graph ML</span>
+        </div>
+      </div>
+
+      <div class="domain-card">
+        <span class="domain-day-badge">Day 1 — April 4</span>
+        <div class="domain-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3 class="domain-title">Systems &amp; Security</h3>
+        <p class="domain-desc">From operating systems and distributed computing to cryptography and network security. Research that builds the reliable, efficient, and secure foundations on which software and the internet run.</p>
+        <div class="domain-topics">
+          <span class="topic-tag">Operating Systems</span>
+          <span class="topic-tag">Distributed Systems</span>
+          <span class="topic-tag">Cryptography</span>
+          <span class="topic-tag">Network Security</span>
+          <span class="topic-tag">Compilers</span>
+          <span class="topic-tag">Cloud Computing</span>
+        </div>
+      </div>
+
+      <div class="domain-card">
+        <span class="domain-day-badge">Day 2 — April 5</span>
+        <div class="domain-icon"><i class="fa-solid fa-infinity"></i></div>
+        <h3 class="domain-title">Theory &amp; Algorithms</h3>
+        <p class="domain-desc">The mathematical heart of computer science — complexity theory, algorithm design, computational geometry, combinatorics, and formal methods that underpin all of computing.</p>
+        <div class="domain-topics">
+          <span class="topic-tag">Complexity Theory</span>
+          <span class="topic-tag">Approximation Algorithms</span>
+          <span class="topic-tag">Graph Algorithms</span>
+          <span class="topic-tag">Formal Verification</span>
+          <span class="topic-tag">Quantum Computing</span>
+          <span class="topic-tag">Online Algorithms</span>
+        </div>
+      </div>
+
+      <div class="domain-card">
+        <span class="domain-day-badge">Day 2 — April 5</span>
+        <div class="domain-icon"><i class="fa-solid fa-display"></i></div>
+        <h3 class="domain-title">Human-Computer Interaction</h3>
+        <p class="domain-desc">Bridging the gap between people and computing systems — UI/UX research, accessibility, augmented reality, affective computing, and the social dimensions of technology design.</p>
+        <div class="domain-topics">
+          <span class="topic-tag">UI/UX Research</span>
+          <span class="topic-tag">Accessibility</span>
+          <span class="topic-tag">Augmented Reality</span>
+          <span class="topic-tag">Affective Computing</span>
+          <span class="topic-tag">CSCW</span>
+          <span class="topic-tag">Visualization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="container">
+    <p class="section-label">Programme</p>
+    <h2 class="section-title">Schedule at a Glance</h2>
+    <div class="divider"></div>
+
+    <div class="schedule-tabs">
+      <button class="schedule-tab active" onclick="switchDay(0, this)">Day 1 — April 4</button>
+      <button class="schedule-tab" onclick="switchDay(1, this)">Day 2 — April 5</button>
+    </div>
+
+    <div class="schedule-day active" style="display: block; padding: 2rem 0;">
+        <div class="form-card text-center" style="border-style: dashed; background: rgba(27, 58, 107, 0.02);">
+            <i class="fa-regular fa-calendar-check" style="font-size: 2.5rem; color: var(--navy); margin-bottom: 1rem;"></i>
+            <h3 style="font-family: var(--serif); font-size: 1.5rem; color: var(--navy); margin-bottom: 0.5rem;">Detailed Schedule Coming Soon</h3>
+            <p style="font-size: 1rem; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500;">
+                Talks — Meals — Keynotes — Posters
+            </p>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section id="speakers">
+  <div class="container">
+    <p class="section-label">Featured Speakers</p>
+    <h2 class="section-title">Who's Speaking</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Bringing together leading minds from across the country and our own research community.</p>
+
+    <div class="speakers-grid">
+
+      <a href="https://www.csa.iisc.ac.in/~arkapravab/" target="_blank" class="speaker-card">
+        <div class="speaker-img-wrap">
+          <img src="Arka.jpg" alt="Arkaprava Basu" />
+          <div class="speaker-track-bar sys"></div>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Dr. Arkaprava Basu</div>
+          <div class="speaker-title">Dept. of Computer Science and Automation, IISc Bengaluru</div>
+          <div class="speaker-bio">Specializing in Computer Architecture and Systems. Leads the Computer Systems Lab (CSL) at IISc.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain sys">Systems</span>
+            <span class="speaker-link">IISc Profile <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://iitgn.ac.in/faculty/cse/fac-jyothi" target="_blank" class="speaker-card">
+        <div class="speaker-img-wrap">
+          <img src="jyothi.jpg" alt="Jyothi Vedurada" />
+          <div class="speaker-track-bar sys"></div>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Dr. Jyothi Vedurada</div>
+          <div class="speaker-title">Assistant Professor, CSE, IIT Gandhinagar</div>
+          <div class="speaker-bio">Expertise in Compilers, Program Analysis, and Software Engineering. Contributing to robust system design.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain sys">Systems/Theory</span>
+            <span class="speaker-link">IITGN Profile <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.7rem"></i></span>
+          </div>
+        </div>
+      </a>
+
+      <div class="speaker-card" style="cursor: default;">
+        <div class="speaker-img-wrap" style="background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-user-tie" style="font-size: 3rem; color: var(--border);"></i>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Institute Faculty</div>
+          <div class="speaker-title">IIT Delhi</div>
+          <div class="speaker-bio">Faculty presenters from our department will be revealed shortly.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain general" style="background: var(--muted);">TBC Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" style="cursor: default;">
+        <div class="speaker-img-wrap" style="background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-user-tie" style="font-size: 3rem; color: var(--border);"></i>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Institute Faculty</div>
+          <div class="speaker-title">IIT Delhi</div>
+          <div class="speaker-bio">Faculty presenters from our department will be revealed shortly.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain general" style="background: var(--muted);">TBC Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" style="cursor: default;">
+        <div class="speaker-img-wrap" style="background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--border);"></i>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Student Presenter</div>
+          <div class="speaker-title">IIT Delhi</div>
+          <div class="speaker-bio">Student keynotes across various research tracks.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain general" style="background: var(--muted);">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" style="cursor: default;">
+        <div class="speaker-img-wrap" style="background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--border);"></i>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Student Presenter</div>
+          <div class="speaker-title">IIT Delhi</div>
+          <div class="speaker-bio">Student keynotes across various research tracks.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain general" style="background: var(--muted);">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" style="cursor: default;">
+        <div class="speaker-img-wrap" style="background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--border);"></i>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Student Presenter</div>
+          <div class="speaker-title">IIT Delhi</div>
+          <div class="speaker-bio">Student keynote across various research tracks.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain general" style="background: var(--muted);">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" style="cursor: default;">
+        <div class="speaker-img-wrap" style="background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--border);"></i>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Student Presenter</div>
+          <div class="speaker-title">IIT Delhi</div>
+          <div class="speaker-bio">Student keynotes across various research tracks.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain general" style="background: var(--muted);">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="speaker-card" style="cursor: default;">
+        <div class="speaker-img-wrap" style="background: linear-gradient(135deg, #e9e6df 0%, #f6f4ef 100%); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--border);"></i>
+        </div>
+        <div class="speaker-body">
+          <div class="speaker-name">Student Presenter</div>
+          <div class="speaker-title">PhD/MSR Researcher</div>
+          <div class="speaker-bio">Student keynotes across various research tracks.</div>
+          <div class="speaker-footer">
+            <span class="speaker-domain general" style="background: var(--muted);">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- <section id="gallery"> -->
+  <!-- <div class="container">
+    <p class="section-label">Past Edition</p>
+    <h2 class="section-title">A Look Back — Symposium 2025</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Glimpses from last year's symposium</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-placeholder"></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder"></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder"></div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section id="registration">
+  <div class="container">
+    <p class="section-label" style="text-align:center">Join Us</p>
+    <h2 class="section-title" style="text-align:center">Register for the Symposium</h2>
+    <div class="divider" style="margin:1rem auto 1rem"></div>
+    <p class="section-sub center" style="text-align:center;margin:0 auto 2.5rem">Open to all IIT Delhi students — B.Tech, M.Tech, and PhD/MSR. Registration is free and covers both days including all sessions, lunch, and the poster exhibition.</p>
+
+    <div class="reg-grid">
+      <div class="reg-info">
+        <h3>Why Register?</h3>
+        <p>Registration gives you access to the full two-day schedule, meals, and exclusive symposium merchandise. It helps us accurately plan the logistics for a great experience.</p>
+        
+        <h3>Important Note</h3>
+        <p>You must use your official IIT Delhi email address to access the form and register.</p>
+      </div>
+      
+      <div class="form-card text-center" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <i class="fa-solid fa-up-right-from-square" style="font-size:2.5rem;color:var(--navy);margin-bottom:1.5rem;"></i>
+        <h3 style="font-family:var(--serif);font-size:1.25rem;color:var(--navy);margin-bottom:0.5rem;">Registration Form</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin-bottom:2rem;">Click below to fill out your details and secure your spot.</p>
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=S1xNYsVFIkGM0ETw-E6UXZS-tOYoxx5KtcIrhzRyNzVUN1NMQ0hMMEM4WjJJWEZKNTJaTTBUQ0RFWC4u" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">
+          Proceed to Form <i class="fa-solid fa-arrow-right" style="margin-left:0.5rem;font-size:0.8rem;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="merch" style="background:var(--navy);padding:4rem 0">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center">
+
+      <div>
+        <p class="section-label" style="color:rgba(255,255,255,0.5)">Perks</p>
+        <h2 style="font-family:var(--serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:1rem">
+          More than just<br>good talks.
+        </h2>
+        <div style="width:3rem;height:3px;background:var(--red);margin-bottom:1.5rem"></div>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.7);line-height:1.75;margin-bottom:1.75rem">
+          Show up, stay curious, and leave with more than you came with — ideas, connections, and a few things to remember the weekend by.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.65rem">
+          <span style="font-size:0.82rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:4px;color:rgba(255,255,255,0.75)">Goodies</span>
+          <span style="font-size:0.82rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:4px;color:rgba(255,255,255,0.75)">Meals &amp; Tea</span>
+          <span style="font-size:0.82rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:4px;color:rgba(255,255,255,0.75)">Networking</span>
+          <span style="font-size:0.82rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:4px;color:rgba(255,255,255,0.75)">Research Ideas</span>
+          <span style="font-size:0.82rem;padding:0.35rem 0.85rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:4px;color:rgba(255,255,255,0.75)">Faculty Access</span>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:center">
+        <div style="background:linear-gradient(135deg, #2a5298, #1B3A6B);border:1px solid rgba(255,255,255,0.12);border-radius:10px;overflow:hidden;max-width:340px;width:100%;min-height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;">
+          <i class="fa-solid fa-gift" style="font-size:3rem;color:rgba(255,255,255,0.4)"></i>
+          <span style="font-size:0.85rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.6)">Design Reveal Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="feedback">
+  <div class="container">
+    <p class="section-label">Suggestions &amp; Feedback</p>
+    <h2 class="section-title">Help Us Shape the Event</h2>
+    <div class="divider"></div>
+
+    <div class="feedback-grid">
+      <div class="feedback-left">
+        <h3>Your input matters</h3>
+        <p>Whether it's a speaker you'd love to see, a topic you want covered, or any thoughts about the event format — we're listening. This is your symposium.</p>
+        <br />
+        <h3>Questions?</h3>
+        <p>If you have any specific inquiries regarding the event, schedule, or presentation formats, feel free to use the feedback form to drop us a note.</p>
+      </div>
+
+      <div class="form-card text-center" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <i class="fa-regular fa-comment-dots" style="font-size:2.5rem;color:var(--navy);margin-bottom:1.5rem;"></i>
+        <h3 style="font-family:var(--serif);font-size:1.25rem;color:var(--navy);margin-bottom:0.5rem;">Feedback Form</h3>
+        <p style="font-size:0.9rem;color:var(--muted);margin-bottom:2rem;">Share your suggestions, questions, and feedback through this</p>
+        <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=S1xNYsVFIkGM0ETw-E6UXZS-tOYoxx5KtcIrhzRyNzVUNTVKRDhYWDkzVDNQREhaWVQ1U1dKRjY3SS4u" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;">
+          Proceed to Form <i class="fa-solid fa-arrow-right" style="margin-left:0.5rem;font-size:0.8rem;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">CSE Research Symposium '26</div>
+        <div class="footer-brand-sub">
+          Organised by the Department of Computer Science &amp; Engineering, IIT Delhi in association with the ACES-ACM Student Chapter.<br /><br />
+          Lecture Hall Complex, IIT Delhi, Hauz Khas, New Delhi – 110016.
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quicklinks</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#domains">Research Tracks</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <!-- <li><a href="#gallery">Gallery</a></li> -->
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Participate</h4>
+        <ul class="footer-links">
+          <li><a href="#registration">Register</a></li>
+          <li><a href="#feedback">Feedback</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:iitdelhiacesacm@gmail.com">iitdelhiacesacm@gmail.com</a></li>
+          <li><a href="https://www.cse.iitd.ac.in" target="_blank">cse.iitd.ac.in</a></li>
+        </ul>
+        <br />
+        <h4>ACES-ACM</h4>
+        <ul class="footer-links">
+          <li><a href="https://www.instagram.com/acesacm.iitdelhi/">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/company/aces-acm-iit-delhi/posts/?feedView=all">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Dept. of CSE, IIT Delhi &amp; ACES-ACM. All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/acesacm.iitdelhi/" class="footer-social"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/company/aces-acm-iit-delhi/posts/?feedView=all" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:iitdelhiacesacm@gmail.com" class="footer-social"><i class="fa fa-envelope"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Docs Dropdown Toggle
+  function toggleDocs(btn) {
+    const dropdown = btn.nextElementSibling;
+    dropdown.classList.toggle('open');
+    if(dropdown.classList.contains('open')) {
+      btn.innerHTML = '<i class="fa-solid fa-folder-minus"></i> Hide Documents';
+    } else {
+      btn.innerHTML = '<i class="fa-solid fa-folder-open"></i> Documents';
+    }
+  }
+
+  // Navbar scroll shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('mobile-open');
+  }
+
+  // Schedule day tabs
+  function switchDay(index, btn) {
+    document.querySelectorAll('.schedule-day').forEach((d, i) => {
+      d.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.schedule-tab').forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+    });
+  }
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--navy)' : '';
+    });
+  });
+</script>
+</body>
+</html>
